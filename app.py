@@ -1,28 +1,20 @@
 
-from flask import Flask, render_template, jsonify
-import numpy as np
-from modules.ai_strategy import AIStrategy
+from flask import Flask, jsonify, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# AI strategy instance
-ai_strategy = AIStrategy()
+db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/ai_dashboard')
-def ai_dashboard():
-    return render_template('ai_dashboard.html')
+@app.route('/api', methods=['GET'])
+def api():
+    return jsonify({"status": "success", "message": "API is running!"})
 
-@app.route('/ai_analysis')
-def ai_analysis():
-    # Mock data for AI analysis
-    historical_data = np.random.rand(100) * 100  # 100 random prices
-    current_price = np.random.rand(1)[0] * 100
-    analysis = ai_strategy.analyze_market(historical_data, current_price)
-    return jsonify(analysis)
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
