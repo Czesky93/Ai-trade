@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Settings</h1>
+    </div>
+    <div class="container">
+        <form method="POST" action="/settings">
+            <label for="api_key">API Key:</label><br>
+            <input type="text" id="api_key" name="api_key"><br>
+            <label for="secret_key">Secret Key:</label><br>
+            <input type="text" id="secret_key" name="secret_key"><br><br>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <footer>
+        <p>RLdC Bot &copy; 2025</p>
+    </footer>
+</body>
+</html>
